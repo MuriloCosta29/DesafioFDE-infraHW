@@ -1,9 +1,3 @@
-/**
- * #################################
- * # Esqueleto do processador em C #
- * #################################
- */
-
 #include <stdint.h>
 #include <stdio.h>
 
@@ -66,11 +60,9 @@ void decode_execute(uint8_t op, uint8_t a, uint8_t b) {
 }
 
 void trace(uint8_t op, uint8_t a, uint8_t b) {
-  const char *nomes[] = {"",    "LOAD", "STORE", "ADD", "SUB", "MOV",
-                         "CMP", "JMP",  "JZ",    "JNZ", "HALT"};
+  const char *nomes[] = {"",    "LOAD", "STORE", "ADD", "SUB", "MOV", "CMP", "JMP",  "JZ",    "JNZ", "HALT"};
 
-  printf("Ciclo %d: %-5s %d,%d | R0=%3d R1=%3d"
-         " R2=%3d R3=%3d | PC=%3d ZF=%d\n",
+  printf("Ciclo %d: %-5s %d,%d | R0=%3d R1=%3d" " R2=%3d R3=%3d | PC=%3d ZF=%d\n",
          ciclo, nomes[op], a, b, reg[0], reg[1], reg[2], reg[3], pc, zf);
 }
 
@@ -102,6 +94,7 @@ int main() {
   mem[0x54]=0x02; mem[0x55]=0x00; mem[0x56]=0x20; 
   mem[0x57]=0x0A; mem[0x58]=0x00; mem[0x59]=0x00;   
 
+
   while (running && pc < 256) {
     uint8_t op, a, b;
     ciclo++;
@@ -113,8 +106,7 @@ int main() {
   printf("\n====================================\n");
   printf("Resultado final: MEM[0x20] = %d\n", mem[0x20]);
   printf("Resultado esperado: 36\n");
-  printf(mem[0x20] == 36 ? "VALIDACAO: OK - soma correta!\n"
-                          : "VALIDACAO: ERRO - soma incorreta!\n");
+  printf(mem[0x20] == 36 ? "VALIDACAO: OK - soma correta!\n"  : "VALIDACAO: ERRO - soma incorreta!\n");
   printf("====================================\n");
 
   return 0;
